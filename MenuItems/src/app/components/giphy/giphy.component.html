@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row" style="padding-top:20px;">
+      <div class="col-sm-6 offset-sm-1">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="imageSearch">Search Image</label>
+            <input formControlName="imageSearch" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.imageSearch.errors }" />
+            <div *ngIf="submitted && f.imageSearch.errors" class="invalid-feedback">
+              <div *ngIf="f.imageSearch.errors.required">Search Image is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Submit
+            </button>
+          </div>
+        </form>
+        <div *ngIf="errormessage">
+          {{errormessage}}
+        </div>
+        <div>
+            <img src={{imageurl}}>
+        </div>
+      </div>
+    </div>
+</div>
